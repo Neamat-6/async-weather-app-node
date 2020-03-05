@@ -63,10 +63,10 @@ const updateUI = async()=>{
     const response = await fetch('/all');
     try{
         const allData = await response.json();
-        document.getElementById('date').innerHTML = 'Date: ' + allData[allData.length -1].date;
-        document.getElementById('temp').innerHTML = 'Temperature is ' + allData[allData.length -1].temp + 'F';
-        document.getElementById('content').innerHTML = "I'm " + allData[allData.length -1].feeling + " today."
-        document.getElementById('description').innerHTML = 'Weather Today is ' + allData[allData.length -1].description;
+        document.getElementById('date').innerHTML = 'Date: ' + allData.date;
+        document.getElementById('temp').innerHTML = 'Temperature is ' + allData.temp + 'F';
+        document.getElementById('content').innerHTML = "I'm " + allData.feeling + " today."
+        document.getElementById('description').innerHTML = 'Weather Today is ' + allData.description;
     }
     catch(error){
         console.log('Error', error);
