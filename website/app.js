@@ -13,7 +13,12 @@ function performAction (e) {
     const zipCode = document.getElementById('zip').value;
     const content = document.getElementById('feelings').value;
     getWeatherData(baseURL+zipCode+'&APPID='+ apiKey).then((data)=>{
-        postData('/add', {date:newDate , temp:data.main.temp, feeling:content, description:data.weather[0].description});
+        postData('/add', {
+            date:newDate , 
+            temp:data.main.temp, 
+            feeling:content, 
+            description:data.weather[0].description
+        });
     }).then((newData)=>{
         updateUI();
     })
@@ -58,10 +63,10 @@ const updateUI = async()=>{
     const response = await fetch('/all');
     try{
         const allData = await response.json();
-        document.getElementById('date').innerHTML = 'Date: ' + allData[0].date;
-        document.getElementById('temp').innerHTML = 'Temperature is ' + allData[0].temp + 'F';
-        document.getElementById('content').innerHTML = "I'm " + allData[0].feeling + " today."
-        document.getElementById('description').innerHTML = 'Weather Today is ' + allData[0].description;
+        document.getElementById('date').innerHTML = 'Date: ' + allData[allData.length -1].date;
+        document.getElementById('temp').innerHTML = 'Temperature is ' + allData[allData.length -1].temp + 'F';
+        document.getElementById('content').innerHTML = "I'm " + allData[allData.length -1].feeling + " today."
+        document.getElementById('description').innerHTML = 'Weather Today is ' + allData[allData.length -1].description;
     }
     catch(error){
         console.log('Error', error);
