@@ -23,13 +23,10 @@ app.use(express.static('website'));
 
 
 app.post('/add', (req,res)=>{
-    newEntry = {
-        date:req.body.date,
-        temp:req.body.temp,
-        feeling:req.body.feeling,
-        description:req.body.description
-    }
-    projectData.push(newEntry);
+    projectData.date = req.body.date;
+    projectData.temp = req.body.temp;
+    projectData.feeling = req.body.feeling
+    projectData.description = req.body.description
     console.log(projectData) ;
 
 });
